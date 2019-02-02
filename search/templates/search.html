@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="row"> <!-- Start Search Section -->
+    <div class="col-12"><h3 class="text-center">Find company logo</h3></div>
+    <div class="col-md-6 mb-3 offset-md-3 mt-3">
+        <form action="" method="get">
+            <div class="form-group">
+
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputGroupPrepend">Search</span>
+                    </div>
+                    <input name="term" type="text" value="{{request.GET.term}}" class="form-control" placeholder="Enter the company name here" aria-describedby="inputGroupPrepend" required>
+
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Search" class="btn btn-primary form-control">
+            </div>
+
+        </form>
+    </div>
+</div> <!-- End Search Section -->
+
+<div class="row"> <!-- Start Search Result -->
+    <div class="col-md-6 offset-md-3"><h3>Search Result</h3></div>
+
+    {% for row in response %}
+    <div class="col-md-6 offset-md-3 mt-3" id="result">
+        <h6>{{row.name}}</h6>
+        <img src="{{row.logo}}" width="100px" />
+    </div>
+    {% empty %}
+    <div class="col-md-6 offset-md-3"><p>No Result Found</p></div>
+    {% endfor %}
+
+</div> <!-- End Search Result -->
+
+
+{% endblock %}
